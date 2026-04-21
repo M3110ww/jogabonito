@@ -1,5 +1,6 @@
 package com.equipo.futbol.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
@@ -31,7 +32,8 @@ public class Jugador {
     @Column(name = "nacionalidad", length = 100)
     private String nacionalidad;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_equipo", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Equipo equipo;
 }
